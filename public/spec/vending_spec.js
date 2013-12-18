@@ -5,29 +5,27 @@ describe("Vending Machine", function() {
     var subject;
 
     beforeEach(function() {
+      spyOn(VendingMachine.Model.prototype, 'save').andCallFake(function() {}); 
+      spyOn(VendingMachine.Model.prototype, 'fetch').andCallFake(function() {
+        this.set({ balance : 0 });
+      });
       subject = new VendingMachine.Model();
-      spyOn(subject, 'save').andCallFake(function() {}); 
-      spyOn(subject, 'fetch').andCallFake(function() {});
     });
     
-    when("created", function() {
+    when("created with a balance of 0", function() {
 
       it('fetches its state', function() {
-        expect(subject.fetch).toHaveBeenCalledWith("[]");
+        expect(VendingMachine.Model.prototype.fetch).toHaveBeenCalled();
       });
       
-      and('the balance is 0', function() {
-        
-        it("displays 'INSERT COIN'", function() {
-          expect(subject.display()).toBe('INSERT COIN');
-        });
-        
-        it("has a balance of 0", function() {
-          expect(subject.get('balance')).toBe(0);
-        });
-        
-      });    
+      it("displays 'INSERT COIN'", function() {
+        expect(subject.display()).toBe('INSERT COIN');
+      });
       
+      it("has a balance of 0", function() {
+        expect(subject.get('balance')).toBe(0);
+      });
+        
     });
 
     when('a coin is inserted', function() {
@@ -37,7 +35,7 @@ describe("Vending Machine", function() {
       });
       
       it('saves the state', function() {
-        expect(subject.save).toHaveBeenCalled();
+        expect(VendingMachine.Model.prototype.save).toHaveBeenCalled();
       });
       
     });
