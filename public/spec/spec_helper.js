@@ -9,9 +9,9 @@ var and = function(description, callback) {
 var createViewRoot = function(id) {
   var element = document.createElement('div');
   element.setAttribute('id', id);
-  $('body').append(element);
+  jQuery('body').append(element);
 };
 
 var removeViewRoot = function(id) {
-  $('#' + id).remove();
+  jQuery('#' + id).remove();
 };

@@ -33,11 +33,11 @@ describe("Vending Machine", function() {
       beforeEach(function() {
         subject.insertCoin('NICKEL');
       });
-      
+
       it('saves the state', function() {
         expect(VendingMachine.Model.prototype.save).toHaveBeenCalled();
       });
-      
+
     });
     
     when('a NICKEL is inserted', function() {
@@ -107,7 +107,7 @@ describe("Vending Machine", function() {
     when ("created", function() {
       
       it('updates the display', function() {
-        expect($('#display').text()).toEqual('INIT');      
+        expect(jQuery('#display').text()).toEqual('INIT');      
       });
       
     });
@@ -120,20 +120,20 @@ describe("Vending Machine", function() {
       });
 
       it('updates the display', function() {
-        expect($('#display').text()).toEqual('CHANGED');
+        expect(jQuery('#display').text()).toEqual('CHANGED');
       });
       
     });
     
     when ('a coin is chosen', function () {
       beforeEach (function () {
-        $('#coin').val ('GLARMPH');
+        jQuery('#coin').val ('GLARMPH');
       });
       
       and ('it is inserted', function (){
         beforeEach (function () {
           spyOn(model, 'insertCoin');
-          $('#insertCoin').click();
+          jQuery('#insertCoin').click();
         });
         
         it ('calls model.insertCoin with the proper parameter', function () {
