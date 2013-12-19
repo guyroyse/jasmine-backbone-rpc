@@ -65,22 +65,35 @@ var NotBackbone = {};
     return self;
       
   })();
+
+  NotBackbone.jQueryModelAdapter = (function() {
+
+    var self = _.extend({}, NotBackbone.ModelAdapter);
+
+    self.get = function(url, success, failure) {
+      $.get(url).done(success).fail(failure);
+    };
+
+    return self;
+
+  })();
   
   VendingMachine.Adapter = (function() {
     
-    var self = _.extend({}, NotBackbone.ModelAdapter);
+    var self = _.extend({}, NotBackbone.jQueryModelAdapter);
     
     self.create = function(model, success, failure) {
       self.update(model, success, failure);
     };
     
     self.read = function(model, success, failure) {
-      $.get('/machine').done(success).fail(failure);
+      self.get('/machine', success, failure);
     };
     
     self.update = function(model, success, failure) {
       var balance = model.get('balance');
-      $.get('/machine/setBalance/' + balance).done(success).fail(failure);
+      var url = '/machine/setBalance/' + balance;
+      self.get(url, success, failure);
     };
     
     return self;

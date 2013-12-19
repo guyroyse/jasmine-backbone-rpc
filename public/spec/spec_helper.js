@@ -15,3 +15,5 @@ var createViewRoot = function(id) {
 var removeViewRoot = function(id) {
   jQuery('#' + id).remove();
 };
+
+var emptyFake = function() {};

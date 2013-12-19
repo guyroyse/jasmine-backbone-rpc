@@ -5,7 +5,7 @@ describe("Vending Machine", function() {
     var subject;
 
     beforeEach(function() {
-      spyOn(VendingMachine.Model.prototype, 'save').andCallFake(function() {}); 
+      spyOn(VendingMachine.Model.prototype, 'save').andCallFake(emptyFake); 
       spyOn(VendingMachine.Model.prototype, 'fetch').andCallFake(function() {
         this.set({ balance : 0 });
       });
@@ -97,10 +97,10 @@ describe("Vending Machine", function() {
     beforeEach(function() {
       createViewRoot('machine');
       model = new VendingMachine.Model();
-      displayContents = 'INIT';
-      model.display = function() {
+      spyOn(model, 'display').andCallFake(function() {
         return displayContents;
-      };
+      });
+      displayContents = 'INIT';
       subject = new VendingMachine.View({ model : model });
     });
     
@@ -132,7 +132,7 @@ describe("Vending Machine", function() {
       
       and ('it is inserted', function (){
         beforeEach (function () {
-          spyOn(model, 'insertCoin');
+          spyOn(model, 'insertCoin').andCallFake(emptyFake);
           jQuery('#insertCoin').click();
         });
         
