@@ -68,25 +68,25 @@ var VendingMachine = {};
       
     el: '#machine',
     
-    events: {
-      'click #insertCoin' : 'insertCoin' 
+    events : {
+      'click #insertCoin' : 'insertCoin'
     },
     
-    initialize: function () {
+    initialize : function() {
       var template = NotBackbone.loadTemplate('templates/machine-template.html');
-      var instantiated = _.template(template, {brand: "AwesomeCo Vending"});
+      var instantiated = _.template( template, { brand: "AwesomeCo Vending"} );
       this.$el.html(instantiated);
       this.render();
       this.listenTo(this.model, 'change', this.render);
     },
     
-    insertCoin: function () {
-      var coin = $('#coin').val ();
-      this.model.insertCoin (coin);
+    insertCoin : function() {
+      var coin = this.$('#coin').val();
+      this.model.insertCoin(coin);
     },
     
-    render: function () {
-      this.$('#display').text (this.model.display ());
+    render : function() {
+      this.$('#display').text(this.model.display());
     }
     
   });

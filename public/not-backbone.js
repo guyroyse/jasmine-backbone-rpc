@@ -8,7 +8,7 @@ var NotBackbone = {};
     
     var result = '';
     
-    var success = function (data, status) {
+    var success = function (data) {
       result = data;
     };
       
