@@ -26,13 +26,13 @@ var NotBackbone = {};
     
     var unimplemented = function(method) {
       return function() {
-        console.log("Unimplemented method on ModelAdapter: " + method);        
+        console.log("Unimplemented method on ModelAdapter: " + method);
       };
     };
     
     var self = {};
-  
-    self.create = unimplemented('create');    
+    
+    self.create = unimplemented('create');
     self.read = unimplemented('read');
     self.update = unimplemented('update');
     self.delete = unimplemented('delete');

@@ -10,5 +10,6 @@ end
 
 get '/machine/setBalance/*' do |amount|
   balance = amount.to_i
+  content_type 'application/json'
   { :status => 'OK' }.to_json
 end
